@@ -115,6 +115,8 @@ def main():
     # detect faces using dlib detector
     detected = detector(input_img, 1)
     faces = np.empty((len(detected), img_size, img_size, 3))
+    all_ages = []
+    all_genders = []
 
     if len(detected) > 0:
         print(detected)
@@ -138,8 +140,13 @@ def main():
         for i, d in enumerate(detected):
             label = "{}, {}".format(int(predicted_ages[i]),
                                     "M" if predicted_genders[i][0] < 0.5 else "F")
+            try:
+                all_ages.append(int(label.split(",")[0]))
+                all_genders.append(label.split(",")[1])
+            except Exception as e: pass
             draw_label(image, (d.left(), d.top()), label)
-    print(predicted_genders)
+    print(all_ages)
+    print(all_genders)
     cv2.imwrite("result.jpg", image)
     # key = cv2.waitKey(-1) if image_dir else cv2.waitKey(30)
 
