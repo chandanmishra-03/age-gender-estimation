@@ -139,7 +139,7 @@ def main():
             label = "{}, {}".format(int(predicted_ages[i]),
                                     "M" if predicted_genders[i][0] < 0.5 else "F")
             draw_label(image, (d.left(), d.top()), label)
-
+    print(predicted_genders)
     cv2.imwrite("result.jpg", image)
     # key = cv2.waitKey(-1) if image_dir else cv2.waitKey(30)
 
