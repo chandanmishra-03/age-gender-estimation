@@ -92,6 +92,8 @@ def main():
     image_dir = args.image_dir
     image_path = args.image
 
+    print(depth, k, weight_file, margin)
+
     if not weight_file:
         weight_file = get_file("weights.28-3.73.hdf5", pretrained_model, cache_subdir="pretrained_models",
                                file_hash=modhash, cache_dir=str(Path(__file__).resolve().parent))
